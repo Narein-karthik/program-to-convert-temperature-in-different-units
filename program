@@ -1,0 +1,71 @@
+def celsius_to_fahrenheit(celsius):
+  return (celsius * 9/5) + 32
+
+
+def celsius_to_kelvin(celsius):
+  return celsius + 273.15
+
+def fahrenheit_to_celsius(fahrenheit):
+  return (fahrenheit - 32) * 5/9
+
+def fahrenheit_to_kelvin(fahrenheit):
+  celsius = fahrenheit_to_celsius(fahrenheit)
+  return celsius_to_kelvin(celsius)
+
+def kelvin_to_celsius(kelvin):
+  return kelvin - 273.15
+
+def kelvin_to_fahrenheit(kelvin):
+  celsius = kelvin_to_celsius(kelvin)
+  return celsius_to_fahrenheit(celsius)
+
+if __name__ == "__main__":
+  print("Welcome to the Temperature Converter!")
+  
+  while True:
+    print("\nSelect conversion type:")
+    print("1. Celsius to Fahrenheit")
+    print("2. Fahrenheit to Celsius")
+    print("3. Celsius to Kelvin")
+    print("4. Kelvin to Celsius")
+    print("5. Fahrenheit to Kelvin")
+    print("6. Kelvin to Fahrenheit")
+    print("7. Exit")
+    
+    choice = input("Enter your choice (1-7): ")
+
+    if choice == '7':
+      print("Exiting the program. Goodbye!")
+      break
+    
+    if choice in ('1', '2', '3', '4', '5', '6'):
+      try:
+        temp_input = float(input("Enter the temperature value: "))
+        result = None
+        unit = ""
+
+        if choice == '1':
+          result = celsius_to_fahrenheit(temp_input)
+          unit = "Fahrenheit"
+        elif choice == '2':
+          result = fahrenheit_to_celsius(temp_input)
+          unit = "Celsius"
+        elif choice == '3':
+          result = celsius_to_kelvin(temp_input)
+          unit = "Kelvin"
+        elif choice == '4':
+          result = kelvin_to_celsius(temp_input)
+          unit = "Celsius"
+        elif choice == '5':
+          result = fahrenheit_to_kelvin(temp_input)
+          unit = "Kelvin"
+        elif choice == '6':
+          result = kelvin_to_fahrenheit(temp_input)
+          unit = "Fahrenheit"
+          
+        print(f"The converted temperature is: {result:.2f} {unit}")
+        
+      except ValueError:
+        print("Invalid input. Please enter a valid number.")
+    else:
+      print("Invalid choice. Please select an option from 1 to 7.")
